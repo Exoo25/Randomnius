@@ -1,17 +1,16 @@
 # Randomnius 🤖💬
 
-**Randomnius** is an **open-source Discord bot** that keeps your server chat alive by generating **AI-powered discussion topics, debates, hot takes, and fun questions** using **Google Gemini AI**. Perfect for off-topic channels, communities, classrooms, or any place that loves conversation!
+**Randomnius** is an **open-source Discord bot** that keeps your server chat alive by generating **Random discussion topics, debates, hot takes, and fun questions**. Perfect for off-topic channels, communities, classrooms, or any place that loves conversation!
 
 ---
 
 ## 🌟 Features
 
-- 💬 `/randtopic [category]` – AI-generated discussion topics (gaming, programming, funny, etc.)  
+- 💬 `/randtopic [category]` – Random-generated discussion topics (gaming, programming, funny, etc.)  
 - 🤔 `/wouldyourather` – Fun “Would You Rather” questions  
 - 🔥 `/hottake` – Spicy hot takes to spark discussion  
 - ⚔ `/debate` – Quick debate topics  
 - 🕒 **Dead-chat revival** – Automatically posts topics when chat is quiet  
-- Powered by **Google Gemini AI**  
 - Fully **open-source** – you can customize and host it yourself  
 
 ---
@@ -27,5 +26,6 @@
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/randomnius.git
+git clone https://github.com/Exoo25/Randomnius.git
 cd randomnius
+```
