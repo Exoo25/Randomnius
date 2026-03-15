@@ -34,17 +34,17 @@ def whizz(prompt):
 
 def zap(category=None):
     if category:
-        return whizz(f"Make ONE short {category} topic for a Discord server. Max 20 words.")
-    return whizz("Make ONE short fun topic for a Discord server. Max 20 words.")
+        return whizz(f"Make ONE short {category} topic for a Discord server. Max 20 words. NO TRASH PLZZZZZZ")
+    return whizz("Make ONE short fun topic for a Discord server. Max 20 words. e.g wht pokemon will be OU stable with 1 single change, or What if u are told u are in a dream? etc NO TRASH plzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
 
 def bop():
-    return whizz("Make a 'Would You Rather' question under 20 words, clean and ready for poll.")
+    return whizz("Make a 'Would You Rather' question under 20 words, clean and ready for poll. e.g -- Would u rather choose 1$ or 2$ , or would u rather always be outside or always be etc NOO TRASH PLZZZZZZZZZZ")
 
 def boom():
-    return whizz("Make a fun controversial hot take for a Discord chat.")
+    return whizz("Make a fun controversial hot take for a Discord chat. no trash ,, under 20 words only 1 NO TRASH PLZZZZZZZZ")
 
 def buzz():
-    return whizz("Make a short debate topic for Discord.")
+    return whizz("Make a short debate topic for Discord. under 20 words, no trash just only 1,NO TRASH PLZZZZZZZZZZZZ")
 
 @blip.event
 async def on_ready():
