@@ -12,12 +12,22 @@ try:
         allowed_channels = set(json.load(f))
 except:
     allowed_channels = set()
+def load_delay():
+    try:
+        with open("delay.txt", "r") as f:
+            return int(f.read().strip())
+    except:
+        return 1800  # default 30 minutes
+
 load_dotenv()
 def save_channels():
     with open("channels.json", "w") as f:
         json.dump(list(allowed_channels), f)
-biryani = "YOURRRRRRRRRRRRRRRRR DC BOT TOKEN"
-butterchicken = "YOURRRRRRRRRRR FREE GEMINI API KEY"
+def save_delay():
+    with open("delay.txt", "w") as f:
+        f.write(str(lassi_delay))
+biryani = os.getenv("DISCORD_TOKEN")
+butterchicken = os.getenv("GEMINI_API")
 
 genai.configure(api_key=butterchicken)
 karahi = genai.GenerativeModel("gemini-3-flash-preview")
@@ -29,7 +39,7 @@ samosa = discord.Client(intents=chai)
 tandoori = app_commands.CommandTree(samosa)
 allowed_channels = set()
 panju = time.time()
-lassi_delay = 1800
+lassi_delay = load_delay()
 
 
 def yasu(prompt):
@@ -147,7 +157,7 @@ async def settopicchannel(interaction: discord.Interaction):
     allowed_channels.add(interaction.channel.id)
     save_channels()
     await interaction.response.send_message(
-        "✅ This channel is now allowed for topics."
+        "✅ This channel is now allowed for topics.",ephemeral=True
     )
 @tandoori.command(name="deltopicchannel", description="Disable this channel for bot topics")
 async def deltopicchannel(interaction: discord.Interaction):
@@ -161,4 +171,26 @@ async def deltopicchannel(interaction: discord.Interaction):
     await interaction.response.send_message(
         "✅ This channel is now disabled for topics."
     )
+@tandoori.command(name="setquietdelay", description="Set how long chat must be quiet before bot sends topic") 
+@app_commands.describe(minutes="Minutes of inactivity before topic appears")
+async def setquietdelay(interaction: discord.Interaction, minutes: int):
+
+    global lassi_delay
+
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("Admins only.", ephemeral=True)
+        return
+
+    if minutes < 1:
+        await interaction.response.send_message("Minimum is 1 minute.", ephemeral=True)
+        return
+
+    lassi_delay = minutes * 60
+
+    await interaction.response.send_message(
+        f"⏱ Quiet chat delay set to **{minutes} minutes**.", 
+        ephemeral=True
+    )
+    lassi_delay = minutes * 60
+    save_delay()
 samosa.run(biryani)
