@@ -8,8 +8,8 @@ import time
 
 load_dotenv()
 
-biryani = os.getenv("DISCORD_TOKEN")
-butterchicken = os.getenv("GEMINI_API")
+biryani = "YOURRRRRRRRRRRRRRRRR DC BOT TOKEN"
+butterchicken = "YOURRRRRRRRRRR FREE GEMINI API KEY"
 
 genai.configure(api_key=butterchicken)
 karahi = genai.GenerativeModel("gemini-3-flash-preview")
@@ -140,5 +140,17 @@ async def settopicchannel(interaction: discord.Interaction):
 
     await interaction.response.send_message(
         "✅ This channel is now allowed for topics."
+    )
+@tandoori.command(name="deltopicchannel", description="Disable this channel for bot topics")
+async def settopicchannel(interaction: discord.Interaction):
+    
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("Admins only.", ephemeral=True)
+        return
+
+    allowed_channels.discard(interaction.channel.id)
+
+    await interaction.response.send_message(
+        "✅ This channel is now disabled for topics."
     )
 samosa.run(biryani)
