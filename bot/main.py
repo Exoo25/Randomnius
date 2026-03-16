@@ -8,8 +8,8 @@ import time
 
 load_dotenv()
 
-biryani = "DISCORD_BOT_TOKEN(;( i mean application 1 ANYWAYS)"
-butterchicken ="GEMINI_IS_FREE_GET_UR_KEEYYYYY"
+biryani = os.getenv("DISCORD_TOKEN")
+butterchicken = os.getenv("GEMINI_API")
 
 genai.configure(api_key=butterchicken)
 karahi = genai.GenerativeModel("gemini-3-flash-preview")
@@ -89,7 +89,7 @@ async def chai_checker():
 @app_commands.describe(category="Optional category: gaming, programming, funny")
 async def randtopic(interaction: discord.Interaction, category: str = None):
     if interaction.channel_id not in allowed_channels:
-        interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
+        await interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
         return
     await interaction.response.defer()
     topic = masala(category)
@@ -100,7 +100,7 @@ async def randtopic(interaction: discord.Interaction, category: str = None):
 @tandoori.command(name="wouldyourather", description="Make a would-you-rather question")
 async def wouldyourather(interaction: discord.Interaction):
     if interaction.channel_id not in allowed_channels:
-        interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
+        await interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
         return
     await interaction.response.defer()
     text = pakora()
@@ -111,7 +111,7 @@ async def wouldyourather(interaction: discord.Interaction):
 @tandoori.command(name="hottake", description="Make a hot take")
 async def hottake(interaction: discord.Interaction):
     if interaction.channel_id not in allowed_channels:
-        interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
+        await interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
         return
     await interaction.response.defer()
     text = nihari()
@@ -122,7 +122,7 @@ async def hottake(interaction: discord.Interaction):
 @tandoori.command(name="debate", description="Make a debate topic")
 async def debate(interaction: discord.Interaction):
     if interaction.channel_id not in allowed_channels:
-        interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
+        await interaction.response.send_message('❌ This Channel Is Not Allowed To do this!',ephemeral=True)
         return
     await interaction.response.defer()
     text = jalebi()
