@@ -5,9 +5,17 @@ import os
 from dotenv import load_dotenv
 import asyncio
 import time
+import json
 
+try:
+    with open("channels.json", "r") as f:
+        allowed_channels = set(json.load(f))
+except:
+    allowed_channels = set()
 load_dotenv()
-
+def save_channels():
+    with open("channels.json", "w") as f:
+        json.dump(list(allowed_channels), f)
 biryani = "YOURRRRRRRRRRRRRRRRR DC BOT TOKEN"
 butterchicken = "YOURRRRRRRRRRR FREE GEMINI API KEY"
 
@@ -137,19 +145,19 @@ async def settopicchannel(interaction: discord.Interaction):
         return
 
     allowed_channels.add(interaction.channel.id)
-
+    save_channels()
     await interaction.response.send_message(
         "✅ This channel is now allowed for topics."
     )
 @tandoori.command(name="deltopicchannel", description="Disable this channel for bot topics")
-async def settopicchannel(interaction: discord.Interaction):
+async def deltopicchannel(interaction: discord.Interaction):
     
     if not interaction.user.guild_permissions.administrator:
         await interaction.response.send_message("Admins only.", ephemeral=True)
         return
 
     allowed_channels.discard(interaction.channel.id)
-
+    save_channels()
     await interaction.response.send_message(
         "✅ This channel is now disabled for topics."
     )
