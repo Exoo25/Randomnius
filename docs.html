@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Randomnius Docs</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#020617;
+    --text:#e2e8f0;
+    --accent:#38bdf8;
+    --border:#1e293b;
+}
+
+.light{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#0f172a;
+    --accent:#0284c7;
+    --border:#cbd5e1;
+}
+
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.ehdsxfvj {
+    color:var(--text);
+    -webkit-text-stroke: 0.5px rgb(102, 102, 244);
+    text-shadow: 0 0 0.5px rgb(102, 102, 244);
+    text-decoration: none;
+}
+
+/* Sidebar */
+.sidebar{
+    position:fixed;
+    width:260px;
+    height:100%;
+    background:var(--card);
+    padding:20px;
+    border-right:1px solid var(--border);
+    transition:.3s;
+}
+
+.sidebar a{
+    display:block;
+    padding:8px;
+    border-radius:8px;
+    text-decoration:none;
+    color:var(--text);
+}
+
+.sidebar a:hover{
+    background:var(--border);
+}
+
+/* Content */
+.content{
+    margin-left:280px;
+    padding:25px;
+}
+
+.card{
+    background:var(--card);
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    border:1px solid var(--border);
+}
+
+/* Topbar */
+.topbar{
+    display:none;
+    padding:10px;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+}
+
+.hamburger{
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* Search */
+.search{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    background:var(--border);
+    color:var(--text);
+}
+
+/* Highlight */
+mark{
+    background:yellow;
+    color:black;
+}
+
+/* Code */
+.code-container{
+    position:relative;
+}
+
+.copy-btn{
+    position:absolute;
+    top:8px;
+    right:8px;
+    background:var(--accent);
+    border:none;
+    padding:5px 8px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+}
+
+code{
+    display:block;
+    background:#0b1020;
+    padding:10px;
+    border-radius:8px;
+    white-space:pre-wrap;
+    color:#cbd5f5;
+}
+
+.keyword{ color:#ff79c6; }
+.func{ color:#8be9fd; }
+.string{ color:#f1fa8c; }
+
+/* Theme button */
+.theme-btn{
+    margin-top:10px;
+    padding:8px;
+    width:100%;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:var(--accent);
+    color:white;
+}
+
+/* Mobile */
+@media(max-width:800px){
+    .sidebar{ transform:translateX(-100%); }
+    .sidebar.active{ transform:translateX(0); }
+    .content{ margin-left:0; }
+    .topbar{ display:flex; align-items:center; gap:10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR (MOBILE) -->
+<div class="topbar">
+    <span class="hamburger" onclick="toggleMenu()">☰</span>
+    <input class="search" placeholder="Search..." onkeyup="searchDocs(this.value)">
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <h2>🎲 Randomnius</h2>
+
+    <input class="search desktop-search" placeholder="Search..." onkeyup="searchDocs(this.value)">
+
+    <button class="theme-btn" onclick="toggleTheme()">Toggle Theme</button>
+
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#commands">Commands</a>
+    <a href="#dev">Dev Section</a>
+    <a href="#setup">Setup Guide</a>
+    <a href="#notes">Notes</a>
+    <a href="#credits">Credits</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="content">
+
+<section id="home" class="card">
+<h1>🎲 Randomnius Wiki</h1>
+<p>A fun, AI-powered Discord bot that keeps chats alive with topics, debates, and spicy takes 🔥</p>
+</section>
+
+<section id="features" class="card">
+<h2>✨ Features</h2>
+<ul>
+<li>💬 Auto Chat Reviver Sends topics when chat becomes quiet</li>
+<li>🧠 AI-Powered Content Uses Gemini AI to generate smart, fun, and clean prompts</li>
+<li>🎯 Category-Based Topics Generate topics based on categories like gaming, programming, etc.</li>
+<li>⚙️ Channel Control Enable/disable bot per channel</li>
+<li>⏱ Custom Delay System Set how long before the bot revives chat</li>
+<li>🔒 Admin Controls Staff-only commands for full control</li>
+</ul>
+</section>
+
+<section id="commands" class="card">
+<h2>📜 Commands</h2>
+
+<h3>💬 Public Commands</h3>
+<p><b>/randtopic</b><br>Generate a random topic Optional: category (gaming, programming, funny)</p>
+<p><b>/wouldyourather</b><br>Generates a "Would You Rather" question</p>
+<p><b>/hottake</b><br>Generates a controversial hot take 🔥</p>
+<p><b>/debate</b><br>Generates a debate topic ⚔️</p>
+
+<h3>🛠 Staff Commands (Admin Only)</h3>
+<p><b>/settopicchannel</b><br>✅ Allows the bot in the current channel<br>Perk: Enables all topic commands in that channel</p>
+<p><b>/deltopicchannel</b><br>❌ Disables the bot in the current channel<br>Perk: Stops all bot activity there</p>
+<p><b>/setquietdelay &lt;minutes&gt;</b><br>⏱ Sets inactivity time before bot sends a topic<br>Perk: Customize chat revival timing</p>
+<p><b>/togglequiet</b><br>🔄 Turns auto-topic system ON/OFF<br>Perk: Full control over automatic messages</p>
+</section>
+
+<section id="dev" class="card">
+<h2>🧪 Dev Section (How It Works)</h2>
+
+<h3>🔑 Setup</h3>
+<p>Add your real Tokens!</p>
+<a href="https://discord.com/developers/applications" class="ehdsxfvj">- Get Your Discord Bot Token</a>
+<br>
+<a href="https://googleaistudio.google.com" class="ehdsxfvj">- Get Your Free Google AI Studio Key</a>
+
+<h3>🤖 AI Generation Core</h3>
+<div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">📋</button>
+<code>
+<span class="keyword">def</span> <span class="func">yasu</span>(prompt):
+    <span class="keyword">try</span>:
+        chicken = karahi.generate_content(prompt)
+        <span class="keyword">if</span> chicken.text:
+            <span class="keyword">return</span> chicken.text.strip()
+    <span class="keyword">except</span> Exception as biryani_error:
+        print(<span class="string">"Gemini hiccup:"</span>, biryani_error)
+    <span class="keyword">return</span> <span class="string">"Couldn't make a topic 😅"</span>
+</code>
+</div>
+
+<h3>🎯 Topic Generators</h3>
+<div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">📋</button>
+<code>
+<span class="keyword">def</span> <span class="func">masala</span>(category=None):
+    <span class="keyword">if</span> category:
+        <span class="keyword">return</span> yasu(<span class="string">f"Make ONE short {category} topic..."</span>)
+    <span class="keyword">return</span> yasu(<span class="string">"Make ONE short fun topic..."</span>)
+</code>
+</div>
+
+<h3>🔁 Auto Chat Revival System</h3>
+<div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">📋</button>
+<code>
+<span class="keyword">async def</span> <span class="func">chai_checker</span>():
+    <span class="keyword">while</span> not samosa.is_closed():
+        <span class="keyword">if</span> quiet_enabled and time.time() - panju &gt; lassi_delay:
+</code>
+</div>
+
+<h3>📁 Channel System</h3>
+<div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">📋</button>
+<code>
+allowed_channels.add(interaction.channel.id)
+save_channels()
+</code>
+</div>
+
+<h3>⏱ Delay System</h3>
+<div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">📋</button>
+<code>
+lassi_delay = minutes * 60
+save_delay()
+</code>
+</div>
+
+<h3>🔄 Toggle Quiet Mode</h3>
+<div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">📋</button>
+<code>
+quiet_enabled = not quiet_enabled
+</code>
+</div>
+
+<h3>🧠 Tech Stack</h3>
+<ul>
+<li>🐍 Python</li>
+<li>🤖 discord.py</li>
+<li>🧠 Google Gemini AI</li>
+<li>📁 JSON (storage)</li>
+<li>⚡ Asyncio</li>
+</ul>
+</section>
+
+<section id="setup" class="card">
+<h2>🚀 Setup Guide</h2>
+<code>pip install discord google-generativeai python-dotenv</code>
+<br>
+<code>python bot.py</code>
+</section>
+
+<section id="notes" class="card">
+<h2>📌 Notes</h2>
+<ul>
+<li>Bot only works in allowed channels</li>
+<li>Admin permissions required for staff commands</li>
+<li>AI responses are filtered to stay clean(they can be bad sometimes)</li>
+</ul>
+</section>
+
+<section id="credits" class="card">
+<h2>💙 Credits</h2>
+<p>Made by Mehdi (Exoo25)</p>
+</section>
+
+</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+function toggleTheme(){
+    document.body.classList.toggle("light");
+}
+
+function searchDocs(query){
+    let content = document.getElementById("content");
+    let text = content.innerHTML;
+    content.innerHTML = text.replace(/<mark>|<\/mark>/g, "");
+    if(query==="") return;
+    let regex = new RegExp(`(${query})`, "gi");
+    content.innerHTML = content.innerHTML.replace(regex, "<mark>$1</mark>");
+}
+
+function copyCode(btn){
+    let code = btn.nextElementSibling.innerText;
+    navigator.clipboard.writeText(code);
+    btn.innerText="✅";
+    setTimeout(()=>btn.innerText="📋",1000);
+}
+</script>
+
+</body>
+</html>
