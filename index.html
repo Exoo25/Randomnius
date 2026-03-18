@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +17,19 @@
     }
     header {
         text-align: center;
-        padding: 50px 20px;
-        background: linear-gradient(90deg, #5865F2, #00b894);
+        padding-top:50px;
+        padding-bottom: 5px;
+        background: linear-gradient(90deg, #fcbe35, #ff6780);
     }
     header img {
-        width: 120px;
+        width: 150px;
         margin-bottom: 20px;
+        filter: drop-shadow(2.5px 2.5px 7.5px black);
+        transition-duration: 500ms;
+    }
+    header img:hover {
+        transform: translateY(20px) scale(1.1);
+        filter: drop-shadow(5px 5px 10px black);
     }
     header h1 {
         margin: 10px 0;
@@ -78,7 +86,7 @@
 <!-- Header -->
 <header>
     <img src="logo.png" alt="Randomnius">
-    <h1 style="font-family: 'Segoe UI', sans-serif; font-size: 2.5em;">
+<h1 style="font-family: 'Segoe UI', sans-serif; font-size: 2.5em;">
   Randomnius - 
   <a href="https://github.com/Exoo25/Randomnius" style="
       text-decoration:none; 
@@ -125,9 +133,9 @@
     <p>Used By Users With "Administrator" Permission via roles or permissions</p>
     <ul>
         <li>⏳ <strong>/setquietdelay</strong> – Set inactivity reminder delay(in minutes)</li>
-        <li>🔘 <strong>/togglequiet</strong> – Toggles chat inactivity Reminder</li>
-        <li>✅ <strong>/settopicchannel</strong> – Allows Randomnius on the working channel</li>
-        <li>❌ <strong>/deltopicchannel</strong> – Disables Randomnius on the working channel</li>
+        <li>🤔 <strong>/togglequiet</strong> – Toggles chat inactivity Reminder</li>
+        <li>🔥 <strong>/settopicchannel</strong> – Allows Randomnius on the working channel</li>
+        <li>⚔ <strong>/deltopicchannel</strong> – Disables Randomnius on the working channel</li>
     </ul>
 </section>
 <!-- Footer -->
